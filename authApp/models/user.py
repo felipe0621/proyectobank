@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin
 
+
 class UserManager(BaseUserManager):
     def create_user(self, username, password=None):
 
@@ -33,9 +34,11 @@ class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField('Email', max_length=100)
     
     def save(self, **kwargs):
-        some_salt = 'mMUj0DrIK6vgtdIYepkIxN'   # de donde sale??
+        some_salt = 'wuwmqfdishs4456ay16'   
         self.password = make_password(self.password, some_salt)
         super().save(**kwargs)
+        
+      
         
     objects: UserManager()
     USERNAME_FIELD = 'username'
